@@ -1,2 +1,2 @@
-# python_lab
-Laboratory to test and learn python stuff
+# python_scripts
+Useful scripts and other stuf for automation in python
