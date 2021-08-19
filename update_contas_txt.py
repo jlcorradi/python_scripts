@@ -9,7 +9,6 @@ parser.add_argument('-s', '--source', dest='source',
 parser.add_argument('-v', '--data_vencimento', help='New Vencimento',
                     default=datetime.now().strftime('%Y%m%d'))
 
-
 if __name__ == '__main__':
     now = datetime.now()
     num_doc_ini = int(now.timestamp())

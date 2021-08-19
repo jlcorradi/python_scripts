@@ -1,8 +1,8 @@
 import argparse
-from datetime import datetime
 import json
-import random
 import os
+import random
+from datetime import datetime
 
 today = datetime.now()
 
@@ -87,6 +87,7 @@ if __name__ == "__main__":
     contas_a_pagar = []
     for i in range(0, args.quantity):
         conta = {}
+        conta["num_doc_origem"] = num_doc_ini + i
         conta["cod_empresa"] = args.cod_empresa
         conta["cod_estab"] = args.cod_estab
         conta["data_vencimento"] = args.data_vencimento
@@ -108,7 +109,6 @@ if __name__ == "__main__":
             if args.periodo is not None
             else get_first_day_of_last_month(args.data_vencimento)
         )
-        conta["num_doc_origem"] = num_doc_ini + i
         conta[
             "info_complementar"
         ] = f'Receita: {args.cod_arrecadacao} - {args.cod_receita} ({args.uf}). det: {args.det_receita if args.det_receita is not None else "-"}'
@@ -124,8 +124,8 @@ if __name__ == "__main__":
         if not os.path.exists(args.destination):
             os.makedirs(args.destination)
         with open(
-            f'{args.destination}/{args.cod_empresa}-{args.cod_arrecadacao}-{args.uf}-{args.cod_receita}{"-" + args.det_receita if args.det_receita is not None else ""}.txt',
-            "w",
+                f'{args.destination}/{args.cod_empresa}-{args.cod_arrecadacao}-{args.uf}-{args.cod_receita}{"-" + args.det_receita if args.det_receita is not None else ""}.txt',
+                "w",
         ) as file:
             file.write(result)
             print(f"File generated: {file.name}")
